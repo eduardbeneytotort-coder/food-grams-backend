@@ -1,38 +1,76 @@
-from transformers import pipeline
+import torch
+from torchvision import models
+from PIL import Image
 
-# Carga el modelo (la primera vez tarda)
-image_classifier = pipeline(
-    "image-classification",
-    model="google/vit-base-patch16-224"
-)
+weights = models.MobileNet_V2_Weights.DEFAULT
+model = models.mobilenet_v2(weights=weights)
+model.eval()
+
+categories = weights.meta["categories"]
+transform = weights.transforms()
+
+
+FOOD_LABELS = {
+    # frutas
+    "apple": "apple",
+    "granny smith": "apple",
+    "banana": "banana",
+    "orange": "orange",
+    "lemon": "orange",
+    "strawberry": "strawberry",
+    "pineapple": "pineapple",
+    "pomegranate": "pomegranate",
+    "fig": "fig",
+
+    # verduras
+    "broccoli": "broccoli",
+    "cauliflower": "broccoli",
+    "cucumber": "cucumber",
+    "zucchini": "zucchini",
+    "bell pepper": "pepper",
+    "mushroom": "mushroom",
+    "artichoke": "artichoke",
+
+    # comida preparada
+    "pizza": "pizza",
+    "cheeseburger": "hamburger",
+    "hamburger": "hamburger",
+    "hotdog": "sandwich",
+    "burrito": "burrito",
+    "guacamole": "guacamole",
+
+    # pan / bollería / dulces
+    "bagel": "bread",
+    "pretzel": "bread",
+    "French loaf": "bread",
+    "bakery": "bread",
+    "ice cream": "ice_cream",
+    "chocolate sauce": "chocolate",
+    "espresso": "coffee",
+
+    # proteínas / otros
+    "meat loaf": "beef",
+    "mashed potato": "potato",
+    "carbonara": "pasta",
+    "plate": "unknown",
+}
 
 
 def detect_food_with_ai(image_path):
-    results = image_classifier(image_path)
+    image = Image.open(image_path).convert("RGB")
+    image_tensor = transform(image).unsqueeze(0)
 
-    if not results:
-        return "unknown", 0.0
+    with torch.no_grad():
+        outputs = model(image_tensor)
+        probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
 
-    best_result = results[0]
-    label = best_result["label"].lower()
-    score = float(best_result["score"])
+    top_prob, top_index = torch.max(probabilities, dim=0)
 
-    if "apple" in label:
-        return "apple", score
+    label = categories[top_index.item()].lower()
+    score = float(top_prob.item())
 
-    if "banana" in label:
-        return "banana", score
-
-    if "rice" in label:
-        return "rice", score
-
-    if "tomato" in label:
-        return "tomato", score
-
-    if "bread" in label:
-        return "bread", score
-
-    if "lettuce" in label or "cabbage" in label:
-        return "lettuce", score
+    for keyword, food_key in FOOD_LABELS.items():
+        if keyword.lower() in label:
+            return food_key, score
 
     return "unknown", score

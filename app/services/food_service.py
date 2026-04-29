@@ -4,6 +4,9 @@ FOOD_DB = {
     "orange": {"name_es": "Naranja", "grams": 150, "calories": 70},
     "strawberry": {"name_es": "Fresas", "grams": 150, "calories": 48},
     "grapes": {"name_es": "Uvas", "grams": 150, "calories": 104},
+    "pineapple": {"name_es": "Piña", "grams": 150, "calories": 75},
+    "pomegranate": {"name_es": "Granada", "grams": 150, "calories": 125},
+    "fig": {"name_es": "Higo", "grams": 100, "calories": 74},
 
     "rice": {"name_es": "Arroz", "grams": 180, "calories": 240},
     "pasta": {"name_es": "Pasta", "grams": 180, "calories": 280},
@@ -22,12 +25,19 @@ FOOD_DB = {
     "carrot": {"name_es": "Zanahoria", "grams": 100, "calories": 41},
     "broccoli": {"name_es": "Brócoli", "grams": 150, "calories": 52},
     "corn": {"name_es": "Maíz", "grams": 150, "calories": 144},
+    "cucumber": {"name_es": "Pepino", "grams": 150, "calories": 24},
+    "zucchini": {"name_es": "Calabacín", "grams": 150, "calories": 26},
+    "pepper": {"name_es": "Pimiento", "grams": 120, "calories": 31},
+    "mushroom": {"name_es": "Champiñón", "grams": 100, "calories": 22},
+    "artichoke": {"name_es": "Alcachofa", "grams": 120, "calories": 56},
 
     "pizza": {"name_es": "Pizza", "grams": 180, "calories": 480},
     "hamburger": {"name_es": "Hamburguesa", "grams": 220, "calories": 600},
     "sandwich": {"name_es": "Sándwich", "grams": 180, "calories": 420},
     "salad": {"name_es": "Ensalada", "grams": 250, "calories": 180},
     "soup": {"name_es": "Sopa", "grams": 300, "calories": 150},
+    "burrito": {"name_es": "Burrito", "grams": 250, "calories": 500},
+    "guacamole": {"name_es": "Guacamole", "grams": 100, "calories": 160},
 
     "milk": {"name_es": "Leche", "grams": 250, "calories": 155},
     "yogurt": {"name_es": "Yogur", "grams": 125, "calories": 90},
@@ -36,6 +46,8 @@ FOOD_DB = {
     "cake": {"name_es": "Tarta", "grams": 120, "calories": 420},
     "cookie": {"name_es": "Galleta", "grams": 30, "calories": 150},
     "chocolate": {"name_es": "Chocolate", "grams": 40, "calories": 220},
+    "ice_cream": {"name_es": "Helado", "grams": 100, "calories": 207},
+    "coffee": {"name_es": "Café", "grams": 200, "calories": 2},
 
     "unknown": {"name_es": "Desconocido", "grams": 0, "calories": 0},
 }
@@ -49,6 +61,10 @@ FOOD_ALIASES = {
     "fresa": "strawberry",
     "fresas": "strawberry",
     "uvas": "grapes",
+    "piña": "pineapple",
+    "pina": "pineapple",
+    "granada": "pomegranate",
+    "higo": "fig",
 
     "arroz": "rice",
     "pasta": "pasta",
@@ -71,6 +87,13 @@ FOOD_ALIASES = {
     "brócoli": "broccoli",
     "maiz": "corn",
     "maíz": "corn",
+    "pepino": "cucumber",
+    "calabacin": "zucchini",
+    "calabacín": "zucchini",
+    "pimiento": "pepper",
+    "champiñon": "mushroom",
+    "champiñón": "mushroom",
+    "alcachofa": "artichoke",
 
     "pizza": "pizza",
     "hamburguesa": "hamburger",
@@ -78,6 +101,8 @@ FOOD_ALIASES = {
     "sándwich": "sandwich",
     "ensalada": "salad",
     "sopa": "soup",
+    "burrito": "burrito",
+    "guacamole": "guacamole",
 
     "leche": "milk",
     "yogur": "yogurt",
@@ -88,6 +113,9 @@ FOOD_ALIASES = {
     "pastel": "cake",
     "galleta": "cookie",
     "chocolate": "chocolate",
+    "helado": "ice_cream",
+    "cafe": "coffee",
+    "café": "coffee",
 }
 
 
